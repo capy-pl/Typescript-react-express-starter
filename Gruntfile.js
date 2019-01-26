@@ -37,7 +37,20 @@ module.exports = function(grunt) {
       exitCode: 0,
     },
     run: {
-      command: 'nodemon dist/server/server.bundle.js',
+      command: 'nodemon',
+    },
+    prodRun: {
+      command: 'node dist/server/server.bundle.js'
+    },
+    testClient: {
+      command: 'jest spec/client',
+      stdout: true,
+      exitCode: 0,
+    },
+    testServer: {
+      command: 'jest spec/server',
+      stdout: true,
+      exitCode: 0,
     }
   };
 
@@ -48,12 +61,14 @@ module.exports = function(grunt) {
   });
 
   grunt.task.registerTask('watch:client', ['webpack:clientWatch']);
-  grunt.task.registerTask('watch:server', ['webpack:serverWatch']);
   grunt.task.registerTask('build:client', ['webpack:client']);
   grunt.task.registerTask('build:server', ['webpack:server']);
   grunt.task.registerTask('build', ['tslint', 'webpack:client', 'webpack:server']);
-  grunt.task.registerTask('test', ['ts:lint', 'exec:test']);
-  grunt.task.registerTask('run', ['build', 'exec:run']);
+  grunt.task.registerTask('test', ['tslint', 'exec:test']);
+  grunt.task.registerTask('test:client', ['tslint:client', 'exec:testClient']);
+  grunt.task.registerTask('test:server', ['tslint:server', 'exec:testServer']);
+  grunt.task.registerTask('run', ['build:client', 'exec:run']);
+  grunt.task.registerTask('prodRun', ['build', 'exec:prodRun']);
   grunt.loadNpmTasks('grunt-tslint');
   grunt.loadNpmTasks('grunt-webpack');
   grunt.loadNpmTasks('grunt-exec');

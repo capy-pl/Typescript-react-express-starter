@@ -39,7 +39,7 @@ const clientConfig = {
     client: './client/ts/index.ts',
   },
   output: {
-    path: path.resolve(__dirname, 'dist', 'client'),
+    path: path.resolve(__dirname, 'dist', 'client/'),
     filename: '[name].bundle.js',
   },
     externals: {
@@ -54,7 +54,7 @@ const serverConfig = {
     server: './server/index.ts',
   },
   output: {
-    path: path.resolve(__dirname, 'dist', 'server'),
+    path: path.resolve(__dirname, './dist', 'server/'),
     filename: '[name].bundle.js',
   },
   externals: [nodeExternals()]

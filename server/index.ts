@@ -7,7 +7,8 @@ import app from './App';
 // Inject environment variable from .env
 dotenv.config();
 
-if (process.env.NODE_ENV === 'development') {
+// Not working currently
+if (process.env.NODE_ENV === 'development' && false) {
   const webpack = require('webpack');
   const middleware = require('webpack-dev-middleware');
   const { serverConfig } = require('../webpack.config.js');
