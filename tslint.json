@@ -6,7 +6,9 @@
     "jsRules": {},
     "rules": {
         "quotemark": [true, "single"],
-        "arrow-parens": ["error", "as-needed"]
+        "arrow-parens": ["error", "as-needed"],
+        "no-console": false,
+        "no-var-requires": false    // Allow this because of dynamic requrie module.
     },
     "rulesDirectory": []
 }

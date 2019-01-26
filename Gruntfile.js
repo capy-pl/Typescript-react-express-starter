@@ -30,9 +30,21 @@ module.exports = function(grunt) {
       client: clientConfig,
     };
 
+  const execConfig = {
+    test: {
+      command: 'jest',
+      stdout: true,
+      exitCode: 0,
+    },
+    run: {
+      command: 'nodemon dist/server/server.bundle.js',
+    }
+  };
+
   grunt.initConfig({
     tslint: tslintConfig,
     webpack: webpackConfig,
+    exec: execConfig,
   });
 
   grunt.task.registerTask('watch:client', ['webpack:clientWatch']);
@@ -40,6 +52,9 @@ module.exports = function(grunt) {
   grunt.task.registerTask('build:client', ['webpack:client']);
   grunt.task.registerTask('build:server', ['webpack:server']);
   grunt.task.registerTask('build', ['tslint', 'webpack:client', 'webpack:server']);
+  grunt.task.registerTask('test', ['ts:lint', 'exec:test']);
+  grunt.task.registerTask('run', ['build', 'exec:run']);
   grunt.loadNpmTasks('grunt-tslint');
   grunt.loadNpmTasks('grunt-webpack');
+  grunt.loadNpmTasks('grunt-exec');
 }

@@ -1,9 +1,13 @@
+const dotenv = require('dotenv');
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+
+dotenv.config();
 
 const baseConfig = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   resolve: {
-    extensions: ['.ts', '.json', '.css', '.scss', '.tsx'],
+    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.tsx'],
   },
   devtool: "cheap-module-eval-source-map",
   module: {
@@ -26,7 +30,7 @@ const baseConfig = {
   stats: {
     builtAt: true,
     errors: false,
-    warnings: false,
+    warnings: true,
   },
 };
 
@@ -53,6 +57,7 @@ const serverConfig = {
     path: path.resolve(__dirname, 'dist', 'server'),
     filename: '[name].bundle.js',
   },
+  externals: [nodeExternals()]
 };
 
 module.exports = {
