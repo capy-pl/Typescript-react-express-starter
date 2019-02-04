@@ -12,7 +12,6 @@ app.use(express.static('../templates'));
 app.use('/static', express.static('dist/client/'));
 
 app.get('/', (req, res) => {
-  console.log('Test 222 reload1123323');
   res.status(200).send('Hello World!!!~~~');
 });
 
