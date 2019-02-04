@@ -18,6 +18,26 @@ nunjucks.configure('views', {
   express: app,
 });
 
+// Use webpack-dev-middleware to watch on client files.
+if (process.env.NODE_ENV === 'development') {
+  const webpack = require('webpack');
+  const devMiddleware = require('webpack-dev-middleware');
+  const {
+    clientConfig,
+  } = require('../webpack.config.js');
+  const compiler = webpack(clientConfig);
+  app.use(devMiddleware(compiler, {
+    logLevel: 'debug',
+    publicPath: clientConfig.output.publicPath,
+    stats: {
+      colors: true,
+    },
+  }));
+  // Not working now. Need to also enable in client js.
+  // const hotModuleMiddleware = require('webpack-hot-middleware');
+  // app.use(hotModuleMiddleware(compiler));
+}
+
 app.get('/', (req, res) => {
   res.render('index.html');
 });
