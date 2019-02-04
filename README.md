@@ -6,12 +6,13 @@ npm install
 ```
 
 ## Start Server
-1. Run in development mode. The command will also build all front-end files. Server will restart on file changing. It also provides
-hot module reload on front-end.
+1. Run in development mode. The command will also build all front-end files. The server will restart(server related files) and rebuild(client files) on files changing.
+Note: `ts-node` is used to start server in this case, which may cause slow startup time.
 ```
 grunt run
 ```
-1. Run in production mode. The command will bundle all front-end and back-end files, then start the server. 
+2. Run in production mode. The command will first build front-end and back-end files, and start server.
+Note: The server won't restart or rebuild front-files when files are edited.
 ```
 grunt prodRun
 ```
@@ -25,16 +26,23 @@ grunt build:client
 ```
 grunt watch:client
 ```
-3. Test front-end files.
+
+## Back-End Commands
+1. Build back-end files(transfor ts code to js and bundle as a single file).
+```
+grunt build:server
+```
+
+## Unit Test
+1. Back-end
+```
+grunt test:server
+```
+2. Front-end
 ```
 grunt test:client
 ```
-## Back-End Commands
-1. Build back-end files.
+3. All
 ```
-grunt build:client
-```
-2. Test back-end files.
-```
-grunt test:server
+grunt test
 ```

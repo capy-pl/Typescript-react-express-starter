@@ -6,3 +6,7 @@ coverage/
 
 # ignore build file.
 dist/
+
+# ignore semantic
+semantic
+semantic.json
