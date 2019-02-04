@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         ]
       }
     },
-  }
+  };
 
   const webpackConfig = {
       serverWatch: Object.assign({ watch: true }, serverConfig),
