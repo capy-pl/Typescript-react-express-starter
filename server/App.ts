@@ -11,6 +11,10 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static('templates'));
 app.use('/static', express.static('dist/client/'));
+app.use('/static', express.static('static', {
+  immutable: true,
+  maxAge: '0.5y',
+}));
 
 // Configure template engine.
 nunjucks.configure('views', {

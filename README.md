@@ -28,7 +28,7 @@ grunt watch:client
 ```
 
 ## Back-End Commands
-1. Build back-end files(transfor ts code to js and bundle as a single file).
+1. Build back-end files(convert ts files to js and bundle as a single file).
 ```
 grunt build:server
 ```
