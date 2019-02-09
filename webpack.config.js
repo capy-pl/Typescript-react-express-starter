@@ -8,27 +8,8 @@ dotenv.config();
 const baseConfig = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   devtool: "cheap-module-eval-source-map",
-  module: {
-    rules: [
-      {
-        test: /\.tsx?/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.s?css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-      }
-    ],
-  },
   stats: {
-    builtAt: true,
     errors: true,
-    warnings: true,
   },
 };
 
@@ -43,6 +24,35 @@ const clientConfig = {
     path: path.resolve(__dirname, 'dist', 'client'),
     filename: '[name].bundle.js',
     publicPath: "/static/"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      }, {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: 'url-loader',
+        options: {
+          // This equals to 512 KB.
+          limit: 524288,
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
+      },
+      {
+        test: [/\.eot$/, /\.ttf$/, /\.svg$/, /\.woff$/, /\.woff2$/],
+        loader: 'file-loader',
+      },
+    ]
   },
   externals: {
     jquery: 'jQuery',
@@ -62,6 +72,14 @@ const serverConfig = {
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],
+  },
+  module: {
+    rules: [{
+        test: /\.ts/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      },
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist', 'server'),
