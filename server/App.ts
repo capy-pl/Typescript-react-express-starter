@@ -10,11 +10,6 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static('templates'));
-app.use('/static', express.static('dist/client/'));
-app.use('/static', express.static('static', {
-  immutable: true,
-  maxAge: '0.5y',
-}));
 
 // Configure template engine.
 nunjucks.configure('views', {
@@ -31,16 +26,27 @@ if (process.env.NODE_ENV === 'development') {
   } = require('../webpack.config.js');
   const compiler = webpack(clientConfig);
   app.use(devMiddleware(compiler, {
-    logLevel: 'debug',
+    logLevel: 'info',
     publicPath: clientConfig.output.publicPath,
     stats: {
       colors: true,
     },
   }));
+
   // Not working now. Need to also enable in client js.
-  // const hotModuleMiddleware = require('webpack-hot-middleware');
-  // app.use(hotModuleMiddleware(compiler));
+  const hotModuleMiddleware = require('webpack-hot-middleware');
+  app.use(hotModuleMiddleware(compiler, {
+      publicPath: clientConfig.output.publicPath,
+  }));
 }
+
+// Serve static files.
+app.use('/static', express.static('dist/client/'));
+// Serve media files.
+app.use('/static', express.static('static', {
+  immutable: true,
+  maxAge: '0.5y',
+}));
 
 app.get('/', (req, res) => {
   res.render('index.html');

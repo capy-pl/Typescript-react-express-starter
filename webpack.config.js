@@ -18,7 +18,7 @@ const clientConfig = {
     client: './client/ts/index.tsx',
   },
   resolve: {
-    extensions: ['.ts', '.js', '.tsx', '.json', '.scss', '.css'],
+    extensions: ['.ts', '.js', '.jsx', '.tsx', '.json', '.scss', '.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist', 'client'),
@@ -45,8 +45,7 @@ const clientConfig = {
         options: {
           // This equals to 512 KB.
           limit: 524288,
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
+        }
       },
       {
         test: [/\.eot$/, /\.ttf$/, /\.svg$/, /\.woff$/, /\.woff2$/],
@@ -56,7 +55,6 @@ const clientConfig = {
   },
   externals: {
     jquery: 'jQuery',
-    'materialize-css': 'M',
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
