@@ -9,7 +9,8 @@
         "quotemark": [true, "single"],
         "arrow-parens": ["error", "as-needed"],
         "no-console": false,
-        "no-var-requires": false    // Allow this because of dynamic requrie module.
+        "no-var-requires": false,   // Allow this because of dynamic requrie module.
+        "jsx-boolean-value": false
     },
     "rulesDirectory": []
 }

@@ -9,6 +9,7 @@
   "author": "Philip L",
   "license": "ISC",
   "dependencies": {
+    "@types/react-router-dom": "^4.3.1",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "dotenv": "^6.2.0",

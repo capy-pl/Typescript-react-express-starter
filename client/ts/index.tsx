@@ -1,11 +1,12 @@
 // import css
 import 'semantic-ui-css/semantic.min.css';
+import '../scss/main';
 
 import React from 'react';
 import { render } from 'react-dom';
 
-import ThemingLayout from './layouts/Theming';
+import App from './App';
 
 document.addEventListener('DOMContentLoaded', () => {
-  render(<ThemingLayout />, document.getElementById('main'));
+  render(<App />, document.getElementById('root'));
 });
