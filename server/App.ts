@@ -33,7 +33,6 @@ if (process.env.NODE_ENV === 'development') {
     },
   }));
 
-  // Not working now. Need to also enable in client js.
   const hotModuleMiddleware = require('webpack-hot-middleware');
   app.use(hotModuleMiddleware(compiler, {
       publicPath: clientConfig.output.publicPath,
@@ -41,9 +40,10 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Serve static files.
-app.use('/static', express.static('dist/client/'));
-// Serve media files.
-app.use('/static', express.static('static', {
+app.use('/static/', express.static('dist/client/'));
+
+// // Serve media files.
+app.use('/', express.static('static', {
   immutable: true,
   maxAge: '0.5y',
 }));

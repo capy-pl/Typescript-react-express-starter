@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { hot } from 'react-hot-loader/root';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import SignInPage from './pages/SignIn';
@@ -13,4 +14,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default hot(App);
