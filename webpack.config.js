@@ -14,16 +14,19 @@ const baseConfig = {
 };
 
 const clientConfig = {
-  entry: [
-      'webpack-hot-middleware/client?reload=true',
-    './client/ts/index.tsx',
-  ],
+  entry:{
+    client: 
+    [
+      './client/ts/index.tsx',
+      'webpack-hot-middleware/client?reload=true&&noInfo=true',
+    ]
+  },
   resolve: {
     extensions: ['.ts', '.js', '.jsx', '.tsx', '.json', '.scss', '.css'],
   },
   output: {
     path: path.resolve(__dirname, 'dist', 'client'),
-    filename: 'client.bundle.js',
+    filename: '[name].bundle.js',
     publicPath: '/static'
   },
   module: {
