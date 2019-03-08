@@ -3,6 +3,9 @@ import express from 'express';
 import helmet from 'helmet';
 import nunjucks from 'nunjucks';
 
+// relative import
+import errorHandler from './controllers/error';
+
 const app = express();
 
 app.use(helmet());
@@ -51,5 +54,7 @@ app.use('/', express.static('static', {
 app.get('/', (req, res) => {
   res.render('index.html');
 });
+
+app.use(errorHandler);
 
 export default app;
