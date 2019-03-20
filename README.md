@@ -26,6 +26,11 @@ grunt build:client
 ```
 grunt watch:client
 ```
+3. Start storybook
+```
+// config your stories in client/ts/stories
+npm run storybook
+```
 
 ## Back-End Commands
 1. Build back-end files(convert ts files to js and bundle as a single file).
